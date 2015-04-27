@@ -1,0 +1,4 @@
+services:
+#    recipe_finder_core.example:
+#        class: RecipeFinder\CoreBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]

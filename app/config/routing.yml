@@ -1,0 +1,4 @@
+recipe_finder_core:
+    resource: "@RecipeFinderCoreBundle/Resources/config/routing.yml"
+    prefix:   /
+

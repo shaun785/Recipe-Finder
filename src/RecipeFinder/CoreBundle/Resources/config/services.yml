@@ -1,4 +1,20 @@
+parameters:
+    recipe_finder_form: RecipeFinder\CoreBundle\Form\Type\RecipeFinderType
+    recipe_finder_common_finder: RecipeFinder\CoreBundle\Common\Finder
+    recipe_finder_common_recipe: RecipeFinder\CoreBundle\Common\Recipe
+    recipe_finder_common_item: RecipeFinder\CoreBundle\Common\Item
+    recipe_finder_common_fridge: RecipeFinder\CoreBundle\Common\Fridge
+
 services:
-#    recipe_finder_core.example:
-#        class: RecipeFinder\CoreBundle\Example
-#        arguments: [@service_id, "plain_value", %parameter%]
+    recipe_finder.form.type.task:
+        class: %recipe_finder_form%
+        tags:
+            - { name: form.type, alias: recipe_finder }
+    recipe_finder.common.finder:
+        class: %recipe_finder_common_finder%
+    recipe_finder.common.recipe:
+        class: %recipe_finder_common_recipe%
+    recipe_finder.common.item:
+        class: %recipe_finder_common_item%
+    recipe_finder.common.fridge:
+        class: %recipe_finder_common_fridge%

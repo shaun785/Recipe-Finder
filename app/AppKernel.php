@@ -16,9 +16,8 @@ class AppKernel extends Kernel
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
-            new RecipeFinder\FridgeBundle\FridgeBundle(),
-            new RecipeFinder\RecipeBundle\RecipeBundle(),
             new RecipeFinder\CoreBundle\RecipeFinderCoreBundle(),
+            new JMS\SerializerBundle\JMSSerializerBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

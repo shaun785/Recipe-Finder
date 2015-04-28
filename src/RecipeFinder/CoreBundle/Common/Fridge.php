@@ -2,7 +2,7 @@
 
 namespace RecipeFinder\CoreBundle\Common;
 
-use RecipeFinder\CoreBundle\Common\Item;
+use RecipeFinder\CoreBundle\Common\Ingredient;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /*
@@ -16,18 +16,18 @@ class Fridge {
 	/*
 		List of Items stored as an Array Collection
 	*/
-	protected $items; 
+	protected $ingredients; 
 
-	public function _construct() {
-		$this->items = new ArrayCollection();
+	public function __construct() {
+		$this->ingredients = new ArrayCollection();
 	}
 
 	/*
 	* Get items
 	* @return ArrayCollection $items
 	*/
-	public function getItems() {
-		return $this->items;
+	public function getIngredients() {
+		return $this->ingredients;
 	}
 
 	/*
@@ -35,8 +35,28 @@ class Fridge {
 	* @param Item $item
 	* @return void
 	*/
-	public function addToItems(Item $item) {
-		$this->items->add($item);
+	public function addIngredient(Ingredient $item) {
+		$this->ingredients->add($item);
 	}
 
+	public function hasIngredients(ArrayCollection $rIngredients) {
+		$foundIngredient = 0;
+		
+		foreach ($rIngredients as $rIngredient) {
+			foreach($this->ingredients as $fIngredient) {
+				// check to see if ingredient is past it's use by date
+				if($fIngredient->isPastUseBy() == true) {
+					continue;
+				}
+
+			    if($fIngredient->getItem() == $rIngredient->getItem() && $fIngredient->getUnit() == $rIngredient->getUnit() && $fIngredient->getAmount() >= $rIngredient->getAmount()) {
+			    	$foundIngredient += 1;
+			    }
+		    }
+		}
+
+		if($rIngredients->count() == $foundIngredient) {
+			return true;
+		}
+	}
 }

@@ -1,9 +1,7 @@
 parameters:
     recipe_finder_form: RecipeFinder\CoreBundle\Form\Type\RecipeFinderType
-    recipe_finder_common_finder: RecipeFinder\CoreBundle\Common\Finder
-    recipe_finder_common_recipe: RecipeFinder\CoreBundle\Common\Recipe
-    recipe_finder_common_item: RecipeFinder\CoreBundle\Common\Item
-    recipe_finder_common_fridge: RecipeFinder\CoreBundle\Common\Fridge
+    recipe_finder_common_class_finder: RecipeFinder\CoreBundle\Common\Finder
+    recipe_finder_common_class_fridge: RecipeFinder\CoreBundle\Common\Fridge
 
 services:
     recipe_finder.form.type.task:
@@ -11,10 +9,7 @@ services:
         tags:
             - { name: form.type, alias: recipe_finder }
     recipe_finder.common.finder:
-        class: %recipe_finder_common_finder%
-    recipe_finder.common.recipe:
-        class: %recipe_finder_common_recipe%
-    recipe_finder.common.item:
-        class: %recipe_finder_common_item%
+        class: %recipe_finder_common_class_finder%
+        arguments: [@jms_serializer, @recipe_finder.common.fridge]
     recipe_finder.common.fridge:
-        class: %recipe_finder_common_fridge%
+        class: %recipe_finder_common_class_fridge%

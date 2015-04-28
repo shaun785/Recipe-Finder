@@ -2,7 +2,8 @@
 
 namespace RecipeFinder\CoreBundle\Common;
 
-use RecipeFinder\CoreBundle\Common\Item;
+use RecipeFinder\CoreBundle\Common\Ingredient;
+use JMS\Serializer\Annotation\Type;
 
 /*
 * Recipe class to store items in a fridge 
@@ -12,14 +13,17 @@ use RecipeFinder\CoreBundle\Common\Item;
 
 class Recipe extends \ArrayObject {
 
+    /**
+     * @Type("string")
+     */
 	protected $name; 
 
-	/*
-	* List of ingerdients stored as an ArrayCollection
-	*/
+    /**
+     * @Type("ArrayCollection<RecipeFinder\CoreBundle\Common\Ingredient>")
+    */
 	protected $ingredients;
 
-	public function _construct() {
+	public function __construct() {
 		$this->ingredients = new ArrayCollection();
 	}
 
@@ -38,15 +42,6 @@ class Recipe extends \ArrayObject {
 	*/	
 	public function getName() {
 		return $this->name;
-	}
-
-	/*
-	* Add item to ingerdients list
-	* @param Item $item
-	* @return void
-	*/	
-	public function addIngredient(Item $item) {
-		$this->ingredients->add($item);
 	}
 
 	/*

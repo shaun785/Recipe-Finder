@@ -25,7 +25,19 @@ class HomeController extends Controller
 		    $form->handleRequest($this->getRequest());   
 
 		    if($form->isValid()) {
+		    	$finder = $this->get('recipe_finder.common.finder');
+		    	$data 	= $form->getData();
 
+		    	$finder->loadRecipes($data['recipes']);
+		    	$finder->loadFridgeIngredients($data['fridgeItems']);	
+
+		    	$recipe = $finder->recommendRecipe();	    	
+
+		    	if(count($recipe) > 0) {
+				    $args['recipe'] = $recipe[0];
+				} else {
+					$args['orderTakeout'] = 'Order Takeout';
+				}
 		    }
 		}
 

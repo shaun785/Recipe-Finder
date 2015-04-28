@@ -8,9 +8,27 @@ namespace RecipeFinder\CoreBundle\Common;
 * @since 1.0
 */
 
-class ItemUnit extends \SplEnum {
+class ItemUnit {
     const OF     	= 'of';
     const GRAMS     = 'grams';
     const ML        = 'ml';
-    const SLICES    = 'slices'
+    const SLICES    = 'slices';
+
+    /*
+    * Get Unit	
+    * @param String $val
+    * @return ITEMUnit
+    */
+    public static function getUnit($val) {
+    	switch(strtolower($val)) {
+    		case "of":
+    			return self::OF;
+    		case "grams":
+    			return self::GRAMS;
+			case "ml":
+				return self::ML;
+			case "slices":
+				return self::SLICES;				    				
+    	}
+    }
 }

@@ -19,11 +19,12 @@ class RecipeFinderType extends AbstractType
     {
         $builder
             ->add('recipes', 'textarea', array('constraints' => array(
-                                                new NotBlank(array('message' => 'Please enter a valid csv file'))
+                                                new NotBlank(array('message' => 'Please enter a valid csv file')),
+                                                new IsJSON()
                                                )))
             ->add('fridgeItems', 'textarea', array('constraints' => array(
                                                        new NotBlank(array('message' => 'Please enter a valid json file')),
-                                                       new IsJSON()
+                                                       
                                                    )))
             ->add('send', 'submit', array('label' => 'Get Recommendation'));
     }

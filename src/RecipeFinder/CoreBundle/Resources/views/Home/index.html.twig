@@ -2,6 +2,13 @@
 
 {% block content %}
 	<h3>Find your recipe</h3> <br />
+
+	{% if recipe|default("") %}
+		<div class="alert alert-success">
+			{{ recipe.name }}
+		</div>
+	{% endif %}
+
 	{{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}	
 		<div class="row">
 			<div class="col-md-2">

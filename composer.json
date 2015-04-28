@@ -2,7 +2,7 @@
     "name": "Recipe Finder",
     "license": "MIT",
     "type": "project",
-    "author": "Shaunak Deshmukh"
+    "author": "Shaunak Deshmukh",
     "description": "The \"Symfony Standard Edition\" distribution",
     "autoload": {
         "psr-0": { "": "src/", "SymfonyStandard": "app/" }
@@ -20,7 +20,9 @@
         "sensio/distribution-bundle": "~3.0,>=3.0.12",
         "sensio/framework-extra-bundle": "~3.0,>=3.0.2",
         "incenteev/composer-parameter-handler": "~2.0",
-        "twitter/bootstrap": "3.*"        
+        "twitter/bootstrap": "3.*",
+        "jms/serializer": "0.16.*",
+        "jms/serializer-bundle": "0.13.*"        
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"

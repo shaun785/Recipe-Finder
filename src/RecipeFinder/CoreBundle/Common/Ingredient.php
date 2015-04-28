@@ -4,44 +4,58 @@ namespace RecipeFinder\CoreBundle\Common;
 
 use RecipeFinder\CoreBundle\Common\ItemUnit;
 
+use JMS\Serializer\Annotation\Type;
+
 /*
 * Item class 
 * @author Shaunak Deshmukh
 * @since 1.0
 */
+ 
+class Ingredient  {
 
-class Item extends \ArrayObject {
-
-	protected $name;
+    /**
+     * @Type("string")
+    */
+	protected $item;
 	
+	/**
+     * @Type("integer")
+    */
 	protected $amount;
 
+	/**
+     * @Type("string")
+    */
 	protected $unit;
 
+	/**
+     * @Type("string")
+    */
 	protected $useBy;
 
-	public function _construct($name, $amount = 0, ItemUnit $unit, \DateTime $useBy) {
-		$this->name 	= $name;
+	public function __construct($item, $amount = 0, $unit, \DateTime $useBy) {
+		$this->item 	= $item;
 		$this->amount 	= $amount;
 		$this->unit 	= $unit;
 		$this->useBy 	= $useBy;
 	}
 
 	/*
-	* Get Name
-	* @return String name	
+	* Get item
+	* @return String item	
 	*/
-	public function getName() {
-		return $this->name;
+	public function getitem() {
+		return $this->item;
 	}
 
 	/*
-	* Set Name
-	* @param String name
+	* Set item
+	* @param String item
 	* @return void	
 	*/
-	public function setName($name) {
-		$this->name = $name;
+	public function setitem($item) {
+		$this->item = $item;
 	}
 
 	/*
@@ -93,5 +107,11 @@ class Item extends \ArrayObject {
 	*/
 	public function setUseby(\DateTime $useBy) {
 		$this->useBy = $useBy;
+	}
+
+	public function isPastUseBy() {
+		if(!$this->useBy || $this->useBy->getTimestamp() <= strtotime(date('Y-m-d')))
+			return true;
+		return false;		
 	}
 }

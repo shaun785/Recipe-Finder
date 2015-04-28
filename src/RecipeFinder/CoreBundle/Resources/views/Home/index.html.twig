@@ -3,9 +3,15 @@
 {% block content %}
 	<h3>Find your recipe</h3> <br />
 
-	{% if recipe|default("") %}
+	{% if recipe.name|default("") %}
 		<div class="alert alert-success">
 			{{ recipe.name }}
+		</div>
+	{% endif %}
+
+	{% if orderTakeout|default("") %}
+		<div class="alert alert-info">
+			{{ orderTakeout }}
 		</div>
 	{% endif %}
 
@@ -15,7 +21,7 @@
 				{{ form_label(form.recipes)}}
 			</div>
 			<div class="col-md-4">
-				{{ form_widget(form.recipes, { 'attr': {'cols': '40', 'rows': '5'}})}}
+				{{ form_widget(form.recipes, { 'attr': {'cols': '60', 'rows': '10'}})}}
 				{{ form_errors(form.recipes) }}				
 			</div>
 		</div>
@@ -25,7 +31,7 @@
 				{{ form_label(form.fridgeItems)}}
 			</div>
 			<div class="col-md-4">
-				{{ form_widget(form.fridgeItems, { 'attr': {'cols': '40', 'rows': '5'}})}}
+				{{ form_widget(form.fridgeItems, { 'attr': {'cols': '60', 'rows': '5'}})}}
 				{{ form_errors(form.fridgeItems) }}				
 			</div>
 		</div>

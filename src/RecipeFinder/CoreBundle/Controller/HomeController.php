@@ -19,6 +19,10 @@ class HomeController extends Controller
     	$args = array();
     	$data = array();	
 
+    	//sample data
+    	$data['recipes'] 	=  file_get_contents(__DIR__.'/../Resources/public/data/recipes.json');
+    	$data['fridgeItems'] =  file_get_contents(__DIR__.'/../Resources/public/data/fridge.csv');
+
 	    $form = $this->createForm('recipe_finder', $data);    	
 	
 		if($this->getRequest()->isMethod('POST')) {
@@ -40,7 +44,6 @@ class HomeController extends Controller
 				}
 		    }
 		}
-
 		$args['form'] = $form->createView(); 
         return $this->render('RecipeFinderCoreBundle:Home:index.html.twig', $args);
     }

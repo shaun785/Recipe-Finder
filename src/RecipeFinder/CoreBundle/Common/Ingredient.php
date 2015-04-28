@@ -34,7 +34,7 @@ class Ingredient  {
     */
 	protected $useBy;
 
-	public function __construct($item, $amount = 0, $unit, \DateTime $useBy) {
+	public function __construct($item, $amount = 0, $unit, \DateTime $useBy = null) {
 		$this->item 	= $item;
 		$this->amount 	= $amount;
 		$this->unit 	= $unit;

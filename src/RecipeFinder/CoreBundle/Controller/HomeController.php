@@ -37,8 +37,8 @@ class HomeController extends Controller
 
 		    	$recipe = $finder->recommendRecipe();	    	
 
-		    	if(count($recipe) > 0) {
-				    $args['recipe'] = $recipe[0];
+		    	if($recipe) {
+				    $args['recipe'] = $recipe;
 				} else {
 					$args['orderTakeout'] = 'Order Takeout';
 				}

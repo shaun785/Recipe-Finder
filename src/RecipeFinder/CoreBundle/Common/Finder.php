@@ -40,10 +40,23 @@ class Finder {
 
 			if($this->fridge->hasIngredients($ingredients) == true) {
 				$potentials[] = $recipe;
-			}			
+				$useByDates   = $this->fridge->getIngredientsUseByDates($ingredients);
+
+				$recipe->setEarliestIngredientUseBy($useByDates[0]); 
+			}
 		}
 
-		return $potentials;
+		if(count($potentials) > 1) { //return recipe with an earliest use by date for an ingredient
+			usort($potentials, function($a, $b) {
+				if($a->getEarliestIngredientUseBy() > $b->getEarliestIngredientUseBy()) {
+					return 1;
+				} else {
+					return -1;
+				}
+			});
+		}
+
+		return $potentials[0];
 	}	
 
 	/*
@@ -71,18 +84,6 @@ class Finder {
 
 			$this->fridge->addIngredient($item);
 		}	
-
-	}
-
-	/*
-	* Find Recipe
-	*/
-	protected function addRecipe(Recipe $recipe) {
-		$this->recipes->add($recipe);
-	}
-
-	protected static function mapCSVToArray($csv) {
-		$array = array();
 
 	}
 }

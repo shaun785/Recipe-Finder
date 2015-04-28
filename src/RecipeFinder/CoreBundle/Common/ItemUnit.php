@@ -30,5 +30,7 @@ class ItemUnit {
 			case "slices":
 				return self::SLICES;				    				
     	}
+
+        return false;
     }
 }

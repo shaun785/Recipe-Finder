@@ -14,7 +14,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 class Fridge {
 
 	/*
-		List of Items stored as an Array Collection
+		List of Ingredients stored as an Array Collection
 	*/
 	protected $ingredients; 
 
@@ -23,8 +23,8 @@ class Fridge {
 	}
 
 	/*
-	* Get items
-	* @return ArrayCollection $items
+	* Get ingredients
+	* @return ArrayCollection $ingredients
 	*/
 	public function getIngredients() {
 		return $this->ingredients;
@@ -58,5 +58,26 @@ class Fridge {
 		if($rIngredients->count() == $foundIngredient) {
 			return true;
 		}
+	}
+
+	public function getIngredientsUseByDates(ArrayCollection $rIngredients) {
+		$useByDates = array();
+		
+		foreach ($rIngredients as $rIngredient) {
+			foreach($this->ingredients as $fIngredient) {
+				// check to see if ingredient is past it's use by date
+				if($fIngredient->isPastUseBy() == true) {
+					continue;
+				}
+
+			    if($fIngredient->getItem() == $rIngredient->getItem() && $fIngredient->getUnit() == $rIngredient->getUnit() && $fIngredient->getAmount() >= $rIngredient->getAmount()) {
+			    	$useByDates[] = $fIngredient->getUseBy();
+			    }
+		    }
+		}
+
+		sort($useByDates);
+
+		return $useByDates;
 	}
 }

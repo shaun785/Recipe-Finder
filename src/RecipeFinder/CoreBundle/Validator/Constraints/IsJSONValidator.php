@@ -18,11 +18,11 @@ class IsJSONValidator extends ConstraintValidator
                 
     	$json = json_decode($value);
 
-        if (!$json) {            
+        if (!$json) { //check if the given value is json format           
             $this->context->buildViolation($constraint->message)
                 ->setParameter('%string%', $value)
                 ->addViolation();
-        } else if(count($json) == 0) {
+        } else if(count($json) == 0) { //check if the json object is empty
             $this->context->buildViolation('The json object cannot be empty')
                 ->setParameter('%string%', $value)
                 ->addViolation();

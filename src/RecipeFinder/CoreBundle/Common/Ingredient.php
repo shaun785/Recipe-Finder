@@ -39,10 +39,11 @@ class Ingredient  {
 
 	/**
      * @Type("string")
+     * @Assert\DateTime
      */
 	protected $useBy;
 
-	public function __construct($item, $amount = 0, $unit, \DateTime $useBy = null) {
+	public function __construct($item, $amount = 0, $unit, $useBy = null) {
 		$this->item 	= $item;
 		$this->amount 	= $amount;
 		$this->unit 	= $unit;

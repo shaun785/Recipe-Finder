@@ -18,7 +18,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 class Fridge {
 
-	/*
+    /**
 	 * @Assert\All({
 	 *     @Assert\Type(type="RecipeFinder\CoreBundle\Common\Ingredient"),
 	 * })	 
@@ -74,7 +74,7 @@ class Fridge {
 	}
 
 	/*
-	* Get use by dates on given ingredients and sort them in ASC order
+	* Get useby dates on given ingredients and sort them in ASC order
 	* @param ArrayCOllection<Ingredients> $rIngredients
 	* @return Array $useyDates
 	*/

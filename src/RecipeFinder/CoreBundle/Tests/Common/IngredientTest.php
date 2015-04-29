@@ -14,6 +14,9 @@ class IngredientTest extends \PHPUnit_Framework_TestCase {
 
 	protected $ingredient;
 
+	/*
+	* Test creating an ingredient object
+	*/
 	public function testIngredient() {
 		$ingredient  	= new Ingredient('bread', '2', 'slices', new \DateTime());
 

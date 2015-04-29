@@ -9,6 +9,12 @@
 		</div>
 	{% endif %}
 
+	{% if error|default("") %}
+		<div class="alert alert-danger">
+			{{ error }}
+		</div>
+	{% endif %}
+
 	{% if orderTakeout|default("") %}
 		<div class="alert alert-info">
 			{{ orderTakeout }}

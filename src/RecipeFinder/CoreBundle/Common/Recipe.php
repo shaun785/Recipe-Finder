@@ -33,7 +33,6 @@ class Recipe extends \ArrayObject {
     */
 	protected $ingredients;
 
-
     /**
      * @Type("string")
     */	
@@ -68,10 +67,18 @@ class Recipe extends \ArrayObject {
 		return $this->ingredients;
 	}
 
+	/*
+	* Set Earliest Ingredients Use By Date 
+	* @return void
+	*/	
 	public function setEarliestIngredientUseBy(\DateTime $date) {
 		$this->earliestIngredientUseBy = $date; 
 	}
 
+	/*
+	* Get Earliest Ingredient use by date
+	* @return DateTime earliestIngredientUseBy
+	*/	
 	public function getEarliestIngredientUseBy() {
 		return $this->earliestIngredientUseBy; 	
 	}

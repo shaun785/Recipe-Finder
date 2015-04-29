@@ -12,6 +12,9 @@ use RecipeFinder\CoreBundle\Common\ItemUnit;
 
 class ItemUnitTest extends \PHPUnit_Framework_TestCase {
 
+	/*
+	* Test to check if item units supplied are valid
+	*/
 	public function testUnits() {		
 		$this->assertEquals('of', ItemUnit::getUnit('of'));
 		$this->assertEquals('slices', ItemUnit::getUnit('slices'));

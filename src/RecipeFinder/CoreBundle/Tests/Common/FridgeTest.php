@@ -21,8 +21,8 @@ class FridgeTest extends \PHPUnit_Framework_TestCase {
 		$this->fridge 	= new Fridge();
 	}
 
-	/* 
-	* Test Adding ingredients
+	/*
+	* Test Adding an ingredient to a Fridge
 	*/
 	public function testAddIngredient() {
 		$ingredient  	= new Ingredient('bread', '2', 'slices', new \DateTime());
@@ -33,8 +33,8 @@ class FridgeTest extends \PHPUnit_Framework_TestCase {
 		$this->assertEquals(1, $count);
 	}
 
-	/* 
-	* Test has ingredients 
+	/*
+	* Test to check if a given set of ingredients are in the fridge
 	*/
 	public function testHasIngredientsTrue() {
 		$ingredient  	= new Ingredient('bread', '2', 'slices', new \DateTime());
@@ -50,8 +50,8 @@ class FridgeTest extends \PHPUnit_Framework_TestCase {
 		$this->assertEquals(true, $bool);
 	}
 
-	/* 
-	* Test has ingredients 
+	/*
+	* Test to check if a given set of ingredients are not in the fridge
 	*/
 	public function testHasIngredientsFalse() {
 		$ingredient  	= new Ingredient('bread', '2', 'slices', new \DateTime());

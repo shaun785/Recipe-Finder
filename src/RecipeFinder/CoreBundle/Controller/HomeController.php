@@ -17,26 +17,26 @@ class HomeController extends Controller
 {
     public function indexAction()
     {
-    	$args = array();
-    	
-    	// get form model
-    	$data = $this->get('recipe_finder.form.model.recipe_finder_model');	
+		$args = array();
 
-	    $sampleData = $this->getSampleData(); //get sample data for testing purpose
+		// get form model
+		$data = $this->get('recipe_finder.form.model.recipe_finder_model');	
 
-    	$data->setRecipes($sampleData['recipes']);
-    	$data->setFridgeItems($sampleData['fridgeItems']);
+		$sampleData = $this->getSampleData(); //get sample data for testing purpose
 
-	    $form = $this->createForm('recipe_finder', $data);    	
-		
+		$data->setRecipes($sampleData['recipes']);
+		$data->setFridgeItems($sampleData['fridgeItems']);
+
+		$form = $this->createForm('recipe_finder', $data);    	
+
 		if($this->getRequest()->isMethod('POST')) {
-		    $form->handleRequest($this->getRequest());   
+			$form->handleRequest($this->getRequest());   
 
-		    if($form->isValid()) {
-		    	$finder = $this->get('recipe_finder.common.finder');
-		    	$data 	= $form->getData();
+			if($form->isValid()) {
+				$finder = $this->get('recipe_finder.common.finder');
+				$data 	= $form->getData();
 
-		    	try {  //load data into the finder service
+				try {  //load data into the finder service
 			    	$finder->loadRecipes($data->getRecipes());
 			    	$finder->loadFridgeIngredients($data->getFridgeItems());	
 
@@ -50,11 +50,11 @@ class HomeController extends Controller
 				} catch(\Exception $e) {
 					$args['error'] = $e->getMessage();
 				}	
-		    }
+			}
 		}
 
 		$args['form'] = $form->createView(); 
-        return $this->render('RecipeFinderCoreBundle:Home:index.html.twig', $args);
+		return $this->render('RecipeFinderCoreBundle:Home:index.html.twig', $args);
     }
 
     /* 
@@ -62,12 +62,12 @@ class HomeController extends Controller
      * @return Array $data
     */
     protected function getSampleData() {
-    	$data = array();
+		$data = array();
 
-    	//sample data
-    	$data['recipes'] 			= file_get_contents(__DIR__.'/../Resources/public/data/recipes.json');
-    	$data['fridgeItems'] 		= file_get_contents(__DIR__.'/../Resources/public/data/fridge.csv');
-    	return $data;
+		//sample data
+		$data['recipes'] 			= file_get_contents(__DIR__.'/../Resources/public/data/recipes.json');
+		$data['fridgeItems'] 		= file_get_contents(__DIR__.'/../Resources/public/data/fridge.csv');
+		return $data;
     }
 }
 

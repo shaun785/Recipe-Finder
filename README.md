@@ -1,7 +1,7 @@
 Recipe Finder
 ========================
 
-This program is a solution to the Recipe Finder Challenge. It is developed using [Symfony2](http://symfony.com]).
+This program is a solution to the Recipe Finder Challenge. It is developed using [Symfony2](http://symfony.com).
 
 Latest Stable Version - 1.0
 

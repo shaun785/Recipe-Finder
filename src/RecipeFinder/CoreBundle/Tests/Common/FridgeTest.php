@@ -17,6 +17,9 @@ class FridgeTest extends \PHPUnit_Framework_TestCase {
 
 	protected $finder;
 
+	/*
+	* Setup a fridge object
+	*/
 	public function setup() {
 		$this->fridge 	= new Fridge();
 	}

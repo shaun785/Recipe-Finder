@@ -42,7 +42,7 @@ class Finder {
 		foreach($this->recipes as $recipe) {
 			$ingredients = $recipe->getIngredients();
 
-			if($this->fridge->hasIngredients($ingredients) == true) { //find if all ingredients are in the fridge with valid use by dates
+			if($this->fridge->hasIngredients($ingredients) == true) { //find if all ingredients are in the fridge with a valid use by dates
 				$potentials[] = $recipe;
 				$useByDates   = $this->fridge->getIngredientsUseByDates($ingredients);
 
@@ -60,7 +60,7 @@ class Finder {
 			});
 		}
 
-		if(count($potentials) == 0) { //if not recipe found, order take out
+		if(count($potentials) == 0) { //if no recipe found, order take out
 			$recipe = new Recipe();
 			$recipe->setName('Order Takeout');
 
@@ -73,6 +73,7 @@ class Finder {
 	/*
 	* Load Recipes
 	* @param Json $recipes
+	* @return void
 	*/
 	public function loadRecipes($recipes) {
 		//use jms serializer
@@ -90,6 +91,7 @@ class Finder {
 	/*
 	* Load Fridge Items
 	* @param String $fridgeItems - in CSV Format
+	* @return void
 	*/
 	public function loadFridgeIngredients($fridgeItems) {
 		$data = array_map("str_getcsv", preg_split('/\r*\n+|\r+/', $fridgeItems));
@@ -111,7 +113,7 @@ class Finder {
 			$this->fridge->addIngredient($item);
 		}	
 
-		$errors = $this->validator->validate($this->fridge);
+		$errors = $this->validator->validate($this->fridge); //validate fridge object
 
 		if(count($errors) > 0) {
 			throw new \Exception('Invalid fridge list supplied');

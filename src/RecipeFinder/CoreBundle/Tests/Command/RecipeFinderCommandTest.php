@@ -15,6 +15,7 @@ class RecipeFinderCommandTest extends WebTestCase
 {
     public function testExecute()
     {
+        //boot kernel so we can access the finder service
 		static::$kernel = static::createKernel();
     	static::$kernel->boot();        
 

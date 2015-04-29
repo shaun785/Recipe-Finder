@@ -16,7 +16,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @Assert\Callback({"RecipeFinder\CoreBundle\Validator\Constraints\RecipeValidator", "validate"})
 */
-class Recipe extends \ArrayObject {
+class Recipe {
 
     /**
      * @Type("string")

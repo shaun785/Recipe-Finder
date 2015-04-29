@@ -48,7 +48,7 @@ class Fridge {
 	}
 
 	/*
-	* Check if Fridge contains the give ingredients
+	* Check if Fridge contains the given ingredients
 	* @param ArrayCOllection<Ingredients> $rIngredients
 	* @return bool true if all ingredients exists
 	*/

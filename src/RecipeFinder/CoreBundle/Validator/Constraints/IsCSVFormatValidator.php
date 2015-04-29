@@ -17,7 +17,7 @@ class IsCSVFormatValidator extends ConstraintValidator
     {
     	$data = array_map("str_getcsv", preg_split('/\r*\n+|\r+/', $value));
 
-		if(count($data[0]) != 4) { //if the csv format does not contain four fields then return an error
+		if(count($data[0]) != 4) { //if the csv format does not contain four fields per line then return an error
 			$this->context->buildViolation($constraint->message)
             	          ->setParameter('%string%', $value)
                 		  ->addViolation();				

@@ -26,12 +26,12 @@ class RecipeFinderCommand extends ContainerAwareCommand
                 'recipes',
                 InputArgument::REQUIRED,
                 'Please provide a recipes json file'
-            )
+            ) // recipes.json
             ->addArgument(
                 'fridgeItems',
                 InputArgument::REQUIRED,
                 'Please provide a fridge items csv'
-            );
+            ); //fridge items csv
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)

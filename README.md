@@ -7,7 +7,7 @@ Latest Stable Version - 1.0
 
 ### Prerequisites
 
-- PHP 5.5
+- PHP 5.5.*
 - Nginx or Apache
 - Symfony2
 - Composer
@@ -20,7 +20,7 @@ Run composer:
 
 ### Run
 
-```php app/console recipe-finder <path-to-recipes.json> <path-to-fridge-items>```
+```php app/console recipe-finder <path-to-recipes.json> <path-to-fridge-items.csv>```
 
 Sample data can be found at - src\RecipeFinder\CoreBundle\Resources\public\data
 
@@ -36,7 +36,7 @@ A basic demo website can be found at - [View Website](http://boiling-retreat-985
 
 The following symfony2 techniques have been used - 
 
-- Custom Constrainst (src\RecipeFinder\CoreBundle\Validator\Constraints)
+- Custom Constraints (src\RecipeFinder\CoreBundle\Validator\Constraints)
 - Unit and Integration Tests (src\RecipeFinder\CoreBundle\Tests)
 - Dependancy Injections (src\RecipeFinder\CoreBundle\Resources\config\services.yml)
 - Json to Object Serializing using JMS Serializer

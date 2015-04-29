@@ -32,15 +32,18 @@ class HomeController extends Controller
 		    	$finder = $this->get('recipe_finder.common.finder');
 		    	$data 	= $form->getData();
 
-		    	$finder->loadRecipes($data['recipes']);
-		    	$finder->loadFridgeIngredients($data['fridgeItems']);	
+		    	try {
+			    	$finder->loadRecipes($data['recipes']);
+			    	$finder->loadFridgeIngredients($data['fridgeItems']);	
 
-		    	$recipe = $finder->recommendRecipe();	    	
+			    	$recipe = $finder->recommendRecipe();	    	
 
-		    	if($recipe) {
-				    $args['recipe'] = $recipe;
-				} else {
-					$args['orderTakeout'] = 'Order Takeout';
+			    	if($recipe) {
+					    $args['recipe'] = $recipe;
+					} else {
+						$args['orderTakeout'] = 'Order Takeout';
+					}
+				} catch(\Exception $e) {
 				}
 		    }
 		}

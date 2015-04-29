@@ -10,6 +10,6 @@ services:
             - { name: form.type, alias: recipe_finder }
     recipe_finder.common.finder:
         class: %recipe_finder_common_class_finder%
-        arguments: [@jms_serializer, @recipe_finder.common.fridge]
+        arguments: [@jms_serializer, @recipe_finder.common.fridge, @validator]
     recipe_finder.common.fridge:
         class: %recipe_finder_common_class_fridge%

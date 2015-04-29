@@ -6,6 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use RecipeFinder\CoreBundle\Validator\Constraints\IsJSON;
+use RecipeFinder\CoreBundle\Validator\Constraints\IsCSVFormat;
 
 /*
 * Form to input data
@@ -22,9 +23,10 @@ class RecipeFinderType extends AbstractType
                                                 new NotBlank(array('message' => 'Please enter a valid csv file')),
                                                 new IsJSON()
                                                )))
-            ->add('fridgeItems', 'textarea', array('constraints' => array(
+            ->add('fridgeItems', 'textarea', array('data_class' => null,
+                                               'constraints' => array(
                                                        new NotBlank(array('message' => 'Please enter a valid json file')),
-                                                       
+                                                       new IsCSVFormat()                                                       
                                                    )))
             ->add('send', 'submit', array('label' => 'Get Recommendation'));
     }

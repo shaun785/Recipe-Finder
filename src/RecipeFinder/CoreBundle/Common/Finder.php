@@ -6,7 +6,7 @@ namespace RecipeFinder\CoreBundle\Common;
 use RecipeFinder\CoreBundle\Common\Ingredient;
 use RecipeFinder\CoreBundle\Common\Fridge;
 use Doctrine\Common\Collections\ArrayCollection;
-
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 /*
 * Finder class to recommend a recipe
 * @author Shaunak Deshmukh
@@ -21,11 +21,14 @@ class Finder {
 	protected $recipes;
 	protected $fridge;
 	protected $serializer;
+	protected $validator;
 
-	public function __construct($serializer, $fridge) {
+	public function __construct($serializer, $fridge, $validator) {
 		$this->recipes 		= new ArrayCollection();
 		$this->serializer 	= $serializer;
 		$this->fridge 		= $fridge;
+
+		$this->validator    = $validator;
 	}
 
 	/*
@@ -64,7 +67,14 @@ class Finder {
 	* @param Json $recipes
 	*/
 	public function loadRecipes($recipes) {
-		$this->recipes = $this->serializer->deserialize($recipes, 'ArrayCollection<RecipeFinder\CoreBundle\Common\Recipe>', 'json');	
+		$this->recipes = $this->serializer->deserialize($recipes, 'ArrayCollection<RecipeFinder\CoreBundle\Common\Recipe>', 'json');
+
+		foreach($this->recipes as $recipe) {
+			$errors = $this->validator->validate($recipe);
+			if(count($errors) > 0) {
+				throw new \Exception((string)$errors);
+			}			
+		}
 	}
 
 	/*
@@ -85,5 +95,10 @@ class Finder {
 			$this->fridge->addIngredient($item);
 		}	
 
+		$errors = $this->validator->validate($this->fridge);
+		
+		if(count($errors) > 0) {
+			throw new \Exception((string)$errors);
+		}		
 	}
 }

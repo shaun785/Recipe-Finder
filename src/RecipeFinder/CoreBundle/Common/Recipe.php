@@ -5,6 +5,7 @@ namespace RecipeFinder\CoreBundle\Common;
 use RecipeFinder\CoreBundle\Common\Ingredient;
 use JMS\Serializer\Annotation\Type;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /*
 * Recipe class to store items in a fridge 
@@ -12,15 +13,23 @@ use Doctrine\Common\Collections\ArrayCollection;
 * @since 1.0
 */
 
+/**
+ * @Assert\Callback({"RecipeFinder\CoreBundle\Validator\Constraints\RecipeValidator", "validate"})
+*/
 class Recipe extends \ArrayObject {
 
     /**
      * @Type("string")
+     * @Assert\NotBlank(message="Please enter a recipe name")
      */
 	protected $name; 
 
     /**
      * @Type("ArrayCollection<RecipeFinder\CoreBundle\Common\Ingredient>")
+	 * @Assert\All({
+	 *     @Assert\Type(type="RecipeFinder\CoreBundle\Common\Ingredient"),
+	 * })	 
+     * @Assert\Valid(traverse = true)     
     */
 	protected $ingredients;
 

@@ -3,8 +3,9 @@
 namespace RecipeFinder\CoreBundle\Common;
 
 use RecipeFinder\CoreBundle\Common\ItemUnit;
-
+use Symfony\Component\Validator\Constraints as Assert;
 use JMS\Serializer\Annotation\Type;
+use RecipeFinder\CoreBundle\Validator\Constraints AS RecipeFinderAsserts;
 
 /*
 * Item class 
@@ -16,22 +17,29 @@ class Ingredient  {
 
     /**
      * @Type("string")
+	 * @Assert\NotBlank(message="Item name is missing"))
+     * 
     */
 	protected $item;
 	
 	/**
      * @Type("integer")
+	 * @Assert\NotBlank(message="Amount must be an integer")
+	 * @Assert\Type(type="integer", message = "Amount must be an integer")
+	 * @Assert\Range(min=0)	 
     */
 	protected $amount;
 
 	/**
      * @Type("string")
+	 * @Assert\NotBlank(message="Unit not provided");
+	 * @RecipeFinderAsserts\IsItemUnit
     */
 	protected $unit;
 
 	/**
      * @Type("string")
-    */
+     */
 	protected $useBy;
 
 	public function __construct($item, $amount = 0, $unit, \DateTime $useBy = null) {

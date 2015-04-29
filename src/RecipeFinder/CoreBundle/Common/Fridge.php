@@ -4,6 +4,7 @@ namespace RecipeFinder\CoreBundle\Common;
 
 use RecipeFinder\CoreBundle\Common\Ingredient;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /*
 * Fridge class to store items in a fridge 
@@ -11,11 +12,18 @@ use Doctrine\Common\Collections\ArrayCollection;
 * @since 1.0
 */
 
+/**
+ * @Assert\Callback({"RecipeFinder\CoreBundle\Validator\Constraints\FridgeValidator", "validate"})
+*/
+
 class Fridge {
 
 	/*
-		List of Ingredients stored as an Array Collection
-	*/
+	 * @Assert\All({
+	 *     @Assert\Type(type="RecipeFinder\CoreBundle\Common\Ingredient"),
+	 * })	 
+     * @Assert\Valid(traverse = true)     
+    */
 	protected $ingredients; 
 
 	public function __construct() {
@@ -39,11 +47,16 @@ class Fridge {
 		$this->ingredients->add($item);
 	}
 
+	/*
+	* Check if Fridge contains the give ingredients
+	* @param ArrayCOllection<Ingredients> $rIngredients
+	* @return bool true if all ingredients exists
+	*/
 	public function hasIngredients(ArrayCollection $rIngredients) {
 		$foundIngredient = 0;
 		
 		foreach ($rIngredients as $rIngredient) {
-			foreach($this->ingredients as $fIngredient) {
+			foreach($this->ingredients as $fIngredient) { //get items in the fridge
 				// check to see if ingredient is past it's use by date
 				if($fIngredient->isPastUseBy() == true) {
 					continue;
@@ -60,6 +73,11 @@ class Fridge {
 		}
 	}
 
+	/*
+	* Get use by dates on given ingredients and sort them in ASC order
+	* @param ArrayCOllection<Ingredients> $rIngredients
+	* @return Array $useyDates
+	*/
 	public function getIngredientsUseByDates(ArrayCollection $rIngredients) {
 		$useByDates = array();
 		

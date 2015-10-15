@@ -1,4 +1,7 @@
-recipe_finder_core:
-    resource: "@RecipeFinderCoreBundle/Resources/config/routing.yml"
-    prefix:   /
+recipe_finder_core_homepage:
+    path:     /
+    defaults: { _controller: AppBundle:Home:index }
 
+recipe_finder_core_logs:
+    path:     /
+    defaults: { _controller: AppBundle:Home:index }

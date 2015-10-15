@@ -22,7 +22,7 @@ Run composer:
 
 ```php app/console recipe-finder <path-to-recipes.json> <path-to-fridge-items.csv>```
 
-Sample data can be found at - src\RecipeFinder\CoreBundle\Resources\public\data
+Sample data can be found at - src\RecipeFinder\AppBundle\Resources\public\data
 
 ### Tests
 
@@ -36,8 +36,8 @@ A basic demo website can be found at - [View Website](http://boiling-retreat-985
 
 The following symfony2 techniques have been used - 
 
-- Custom Constraints (src\RecipeFinder\CoreBundle\Validator\Constraints)
-- Unit and Integration Tests (src\RecipeFinder\CoreBundle\Tests)
-- Dependancy Injections (src\RecipeFinder\CoreBundle\Resources\config\services.yml)
+- Custom Constraints (src\RecipeFinder\AppBundle\Validator\Constraints)
+- Unit and Integration Tests (src\RecipeFinder\AppBundle\Tests)
+- Dependancy Injections (src\RecipeFinder\AppBundle\Resources\config\services.yml)
 - Json to Object Serializing using JMS Serializer
-- Custom Asserts using to Annotations (src\RecipeFinder\CoreBundle\Common)
+- Custom Asserts using to Annotations (src\RecipeFinder\AppBundle\Common)

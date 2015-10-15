@@ -1,7 +1,0 @@
-recipe_finder_core_homepage:
-    path:     /
-    defaults: { _controller: RecipeFinderCoreBundle:Home:index }
-
-recipe_finder_core_logs:
-    path:     /
-    defaults: { _controller: RecipeFinderCoreBundle:Home:index }

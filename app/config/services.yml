@@ -1,9 +1,20 @@
-# Learn more about services, parameters and containers at
-# http://symfony.com/doc/current/book/service_container.html
 parameters:
-#    parameter_name: value
+    recipe_finder_form: AppBundle\Form\Type\RecipeFinderType
+    recipe_finder_common_class_finder: AppBundle\Common\Finder
+    recipe_finder_common_class_fridge: AppBundle\Common\Fridge
+    recipe_finder_form_model: AppBundle\Form\Model\RecipeFinderForm
 
 services:
-#    service_name:
-#        class: AppBundle\Directory\ClassName
-#        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
+    recipe_finder.form.type.task:
+        class: %recipe_finder_form%
+        tags:
+            - { name: form.type, alias: recipe_finder }
+    recipe_finder.common.finder:
+        class: %recipe_finder_common_class_finder%
+        arguments: [@jms_serializer, @recipe_finder.common.fridge, @validator]
+    recipe_finder.common.fridge:
+        class: %recipe_finder_common_class_fridge%
+    recipe_finder.form.model.recipe_finder_model:
+        class: %recipe_finder_form_model%
+        tags:
+            - { name: form.type, alias: recipe_finder_form }

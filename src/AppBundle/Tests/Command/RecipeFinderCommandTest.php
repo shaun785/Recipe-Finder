@@ -5,7 +5,7 @@ use Symfony\Bundle\FrameworkBundle\Console\Application;
 use AppBundle\Command\RecipeFinderCommand;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-/*
+/**
 * Recipe Finder Command test
 * @author Shaunak Deshmukh
 * @since 1.0
@@ -36,8 +36,10 @@ class RecipeFinderCommandTest extends WebTestCase
         //test valid scenario
         $this->assertRegExp('/Invalid Recipe Json file/', $commandTester->getDisplay());
 
-        $recipesJson    = __DIR__ . '/../../Resources/public/data/recipes.json';
-        $fridgeCSV    = __DIR__ . '/../../Resources/public/data/fridge.csv';
+        $kernelDir = static::$kernel->getRootDir();
+
+        $recipesJson  = $kernelDir . '/Resources/public/data/recipes.json';
+        $fridgeCSV    = $kernelDir . '/Resources/public/data/fridge.csv';
 
         $commandTester->execute(
             array(

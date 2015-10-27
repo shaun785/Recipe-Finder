@@ -64,9 +64,12 @@ class HomeController extends Controller
     {
         $data = array();
 
+        $kernelDir = $this->get('kernel')->getRootDir();
+
         //sample data
-        $data['recipes']            = file_get_contents(__DIR__.'/../Resources/public/data/recipes.json');
-        $data['fridgeItems']        = file_get_contents(__DIR__.'/../Resources/public/data/fridge.csv');
+        $data['recipes']            = file_get_contents($kernelDir . '/Resources/public/data/recipes.json');
+        $data['fridgeItems']        = file_get_contents($kernelDir . '/Resources/public/data/fridge.csv');
+
         return $data;
     }
 }
